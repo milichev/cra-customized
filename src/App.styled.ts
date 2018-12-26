@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import * as variables from './scss/App.variables.scss';
+
+// console.log('variables', variables); // tslint:disable-line:no-console
 
 export interface HeaderProps {
   color?: string;
@@ -7,10 +10,16 @@ export interface HeaderProps {
 export const Header = styled
   .header
   .attrs<HeaderProps>({
-    role: 'app-header'
+    role: 'app-header',
   })`
 
-  color: ${(props: HeaderProps) => props.color || 'white'};
+  color: ${
+  (props: HeaderProps) => (
+    props.color ||
+    variables.color ||
+    'white'
+  )
+  };
   background-color: #282c34;
   min-height: 100vh;
   display: flex;

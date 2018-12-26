@@ -5,7 +5,6 @@ import { Logo } from './img';
 import { SpeakStyle, YodaService } from './service/YodaService';
 
 interface AppProps {
-
 }
 
 interface AppState {
@@ -13,6 +12,7 @@ interface AppState {
 }
 
 class App extends Component<AppProps, AppState> {
+
   state = {
     speakStyle: SpeakStyle.human,
   };
@@ -31,7 +31,7 @@ class App extends Component<AppProps, AppState> {
     return (
       <div className="App">
         <Header
-          color="maroon"
+          // color="maroon"
         >
           <Logo
             className="App-logo"
