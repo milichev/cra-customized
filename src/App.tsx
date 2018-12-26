@@ -2,9 +2,32 @@ import React, { Component } from 'react';
 import './App.scss';
 import { Header } from './App.styled';
 import { Logo } from './img';
+import { SpeakStyle, YodaService } from './service/YodaService';
 
-class App extends Component {
+interface AppProps {
+
+}
+
+interface AppState {
+  speakStyle: SpeakStyle;
+}
+
+class App extends Component<AppProps, AppState> {
+  state = {
+    speakStyle: SpeakStyle.human,
+  };
+
+  private yodaService: YodaService = new YodaService();
+
   render() {
+    const {
+      state: {
+        speakStyle,
+      },
+    } = this;
+
+    const speak = this.yodaService.speak(speakStyle);
+
     return (
       <div className="App">
         <Header
@@ -24,10 +47,28 @@ class App extends Component {
           >
             Learn React
           </a>
+          <p>
+            Speaking: {speak}
+            <button onClick={this.handleToggleSpeak}>Toggle</button>
+          </p>
         </Header>
       </div>
     );
   }
+
+  private handleToggleSpeak = (
+    e: React.MouseEvent<HTMLButtonElement>,
+  ) => {
+    const {
+      state: {
+        speakStyle: prev,
+      },
+    } = this;
+    const speakStyle = prev === SpeakStyle.human
+      ? SpeakStyle.yoda
+      : SpeakStyle.human;
+    this.setState({speakStyle});
+  };
 }
 
 export default App;
