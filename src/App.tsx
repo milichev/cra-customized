@@ -2,28 +2,27 @@ import React, { Component } from 'react';
 import './App.scss';
 import { Header } from './App.styled';
 import { Logo } from './img';
-import { SpeakStyle, YodaService } from './service/YodaService';
+import { YodaService } from './service/YodaService';
 import * as variables from './scss/App.variables.scss';
+import { AppStore } from './state/AppStore';
+import { withStore } from './state/withStore';
 
 interface AppProps {
+  appStore: AppStore;
 }
 
-interface AppState {
-  speakStyle: SpeakStyle;
-}
-
-class App extends Component<AppProps, AppState> {
-
-  state = {
-    speakStyle: SpeakStyle.human,
-  };
+class AppStateful
+  extends Component<AppProps> {
 
   private yodaService: YodaService = new YodaService();
 
   render() {
     const {
-      state: {
-        speakStyle,
+      props: {
+        appStore: {
+          speakStyle,
+          toggleSpeak,
+        },
       },
     } = this;
 
@@ -50,26 +49,15 @@ class App extends Component<AppProps, AppState> {
           </a>
           <p>
             Speaking: {speak}
-            <button onClick={this.handleToggleSpeak}>Toggle</button>
+            <button onClick={toggleSpeak}>Toggle</button>
           </p>
         </Header>
       </div>
     );
   }
-
-  private handleToggleSpeak = (
-    e: React.MouseEvent<HTMLButtonElement>,
-  ) => {
-    const {
-      state: {
-        speakStyle: prev,
-      },
-    } = this;
-    const speakStyle = prev === SpeakStyle.human
-      ? SpeakStyle.yoda
-      : SpeakStyle.human;
-    this.setState({speakStyle});
-  };
 }
 
-export default App;
+export const App = withStore(
+  AppStateful,
+  'appStore',
+);
