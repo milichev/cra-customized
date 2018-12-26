@@ -5,7 +5,7 @@ exports[`App should render logo 1`] = `
   className="App"
 >
   <styled.header
-    color="maroon"
+    color="#9bc"
   >
     <ReactComponent
       className="App-logo"

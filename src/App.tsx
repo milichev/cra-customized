@@ -3,6 +3,7 @@ import './App.scss';
 import { Header } from './App.styled';
 import { Logo } from './img';
 import { SpeakStyle, YodaService } from './service/YodaService';
+import * as variables from './scss/App.variables.scss';
 
 interface AppProps {
 }
@@ -31,7 +32,7 @@ class App extends Component<AppProps, AppState> {
     return (
       <div className="App">
         <Header
-          // color="maroon"
+          color={variables.color}
         >
           <Logo
             className="App-logo"

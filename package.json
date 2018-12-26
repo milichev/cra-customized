@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node scripts/customized-config start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "build": "node scripts/customized-config build",
+    "test": "node scripts/customized-config test",
     "eject": "react-scripts eject"
   },
   "dependencies": {
