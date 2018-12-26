@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.scss';
-import {Header} from './App.styled';
+import { Header } from './App.styled';
+import { Logo } from './img';
 
 class App extends Component {
   render() {
@@ -10,10 +10,8 @@ class App extends Component {
         <Header
           color="maroon"
         >
-          <img
-            src={logo}
+          <Logo
             className="App-logo"
-            alt="logo"
           />
           <p>
             Edit <code>src/App.tsx</code> and save to reload.
